@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th = "http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>유저 등록</title>
+</head>
+<body>
+<form action="add/user"  method="post">
+    <label for="github_id">github id </label> <input type="text" name="githubId" id="github_id" /> <br>
+    <label for="github_key">gihub key </label> <input type="text" name="githubKey" id="github_key"/> <br>
+    <button type="submit"> 확인 </button>
+</form>
+<p th:text="${message}"></p>
+</body>
+</html>
