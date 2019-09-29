@@ -56,7 +56,7 @@ public class CommitServiceImpl implements CommitService {
                         LocalDateTime commitDate = LocalDateTime.parse((String)jsonObject.get("created_at"), DateTimeFormatter.ISO_ZONED_DATE_TIME);
                         logger.debug("now : {} commitDate : {}\n", LocalDate.now(), LocalDate.from(commitDate));
                         /* 날짜가 오늘 날짜인지 확인 */
-                        if (LocalDate.from(commitDate).isBefore(LocalDate.now())){
+                        if (LocalDate.from(commitDate).isEqual(LocalDate.now())){
                             /* commit 여부를 확인 */
                             if (eventType.equals("PushEvent") || eventType.equals("PullRequestEvent")) {
                                 JSONObject payload = (JSONObject) jsonObject.get("payload");

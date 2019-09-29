@@ -9,13 +9,15 @@
 <table>
     <tr>
         <th>github id</th>
-        <th>commit 내용</th>
         <th>commmit 여부</th>
+        <th>commit 내용</th>
     </tr>
     <tr th:each="commit : ${todayCommits}">
         <td th:text="${commit.githubId}"></td>
-        <td th:text="${commit.commitContents}"></td>
         <td th:text="${commit.chkCommit}"></td>
+        <td th:each="content : ${commit.commitContents}">
+            <p th:text="${content.commitContent}"></p>
+        </td>
     </tr>
 </table>
 </body>
