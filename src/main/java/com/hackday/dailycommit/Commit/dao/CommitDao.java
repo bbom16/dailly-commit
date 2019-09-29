@@ -10,7 +10,11 @@ import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
 
+import static com.hackday.dailycommit.Commit.dao.CommitDaoSqls.*;
 @Repository
 public class CommitDao {
     private NamedParameterJdbcTemplate jdbc;
@@ -27,6 +31,11 @@ public class CommitDao {
     public Long insertCommit(Commit commit){
         SqlParameterSource params = new BeanPropertySqlParameterSource(commit);
         return insertAction.executeAndReturnKey(params).longValue();
+    }
+
+    public List<Commit> selectUserCommits(Long userId){
+        Map<String,Long> param = Collections.singletonMap("userId", userId );
+        return jdbc.query(SELECT_USER_TODAY_COMMITS, param, commitRowMapper);
     }
 
 }

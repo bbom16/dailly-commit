@@ -10,26 +10,29 @@ import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
+
+import java.util.Collections;
 import java.util.List;
+
+import static com.hackday.dailycommit.Commit.dao.TodayCommitDaoSqls.*;
 
 @Repository
 public class TodayCommitDao {
     private NamedParameterJdbcTemplate jdbc;
     private SimpleJdbcInsert insertAction;
-    private RowMapper<TodayCommit> rowMapper = BeanPropertyRowMapper.newInstance(TodayCommit.class);
+    private RowMapper<TodayCommit> todayCommitRowMapper = BeanPropertyRowMapper.newInstance(TodayCommit.class);
 
     public TodayCommitDao(DataSource dataSource){
         this.jdbc = new NamedParameterJdbcTemplate(dataSource);
         this.insertAction = new SimpleJdbcInsert(dataSource).withTableName("chkCommit").usingGeneratedKeyColumns("id");
     }
 
+    public List<TodayCommit> selectTodayCommit(){
+        return jdbc.query(SELECT_COMMIT_TODAY, Collections.EMPTY_MAP, todayCommitRowMapper);
+    }
+
     public Long insertTodayCommit(TodayCommit todayCommit){
         SqlParameterSource params = new BeanPropertySqlParameterSource(todayCommit);
         return insertAction.executeAndReturnKey(params).longValue();
     }
-
-    public List<TodayCommit> selectAllTodayCommit(){
-        return jdbc.query()
-    }
-
 }

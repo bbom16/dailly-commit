@@ -1,21 +1,13 @@
 package com.hackday.dailycommit.Commit.dto;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
+import java.util.List;
 
 public class TodayCommit {
-    private Long id;
     private Long userId;
     private String githubId;
-    private LocalDateTime commitDate;
+    private List<Commit> commitContents;
     private boolean chkCommit;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public Long getUserId() {
         return userId;
@@ -23,22 +15,6 @@ public class TodayCommit {
 
     public void setUserId(Long userId) {
         this.userId = userId;
-    }
-
-    public LocalDateTime getCommitDate() {
-        return commitDate;
-    }
-
-    public void setCommitDate(LocalDateTime commitDate) {
-        this.commitDate = commitDate;
-    }
-
-    public boolean isChkCommit() {
-        return chkCommit;
-    }
-
-    public void setChkCommit(boolean chkCommit) {
-        this.chkCommit = chkCommit;
     }
 
     public String getGithubId() {
@@ -49,13 +25,28 @@ public class TodayCommit {
         this.githubId = githubId;
     }
 
+    public boolean isChkCommit() {
+        return chkCommit;
+    }
+
+    public void setChkCommit(boolean chkCommit) {
+        this.chkCommit = chkCommit;
+    }
+
+    public List<Commit> getCommitContents() {
+        return commitContents;
+    }
+
+    public void setCommitContents(List<Commit> commitContents) {
+        this.commitContents = commitContents;
+    }
+
     @Override
     public String toString() {
         return "TodayCommit{" +
-                "id=" + id +
-                ", userId=" + userId +
+                "userId=" + userId +
                 ", githubId='" + githubId + '\'' +
-                ", commitDate=" + commitDate +
+                ", commitContents=" + commitContents +
                 ", chkCommit=" + chkCommit +
                 '}';
     }

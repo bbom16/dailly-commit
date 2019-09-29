@@ -31,6 +31,6 @@ public class CommitServiceTest {
     @Test
     public void serviceTest(){
         List<User> users = userService.getAllUsers();
-        commitService.insertCommit(users);
+        commitService.insertCommit();
     }
 }
